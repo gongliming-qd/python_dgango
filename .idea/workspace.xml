@@ -18,6 +18,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1aIYdiYVKdZxWqAZ53FE9wG9UNM" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -27,6 +30,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -87,13 +91,13 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1586424720958" />
-    <state x="759" y="344" key="SettingsEditor" timestamp="1586424889458">
+    <state x="759" y="344" key="SettingsEditor" timestamp="1587439743311">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="759" y="344" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1586424889458" />
-    <state x="960" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1587376271352">
+    <state x="759" y="344" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1587439743311" />
+    <state x="960" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1587439724523">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="960" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1587376271352" />
+    <state x="960" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1587439724523" />
   </component>
 </project>
