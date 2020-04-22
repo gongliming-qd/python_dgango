@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4adb918b-a100-4819-80d1-1745bd9a9885" name="Default Changelist" comment="" />
+    <list default="true" id="4adb918b-a100-4819-80d1-1745bd9a9885" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/uwsgi.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/settings.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,6 +84,9 @@
       <workItem from="1586863487420" duration="1767000" />
       <workItem from="1587350582926" duration="1200000" />
       <workItem from="1587376271357" duration="2670000" />
+      <workItem from="1587439723444" duration="1420000" />
+      <workItem from="1587458888491" duration="1083000" />
+      <workItem from="1587524966914" duration="931000" />
     </task>
     <servers />
   </component>
@@ -95,9 +102,9 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="759" y="344" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1587439743311" />
-    <state x="960" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1587439724523">
+    <state x="960" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1587524967531">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="960" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1587439724523" />
+    <state x="960" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1587524967531" />
   </component>
 </project>
