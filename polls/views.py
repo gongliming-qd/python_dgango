@@ -23,6 +23,8 @@ def index(request):
 def static(request):
     return render(request, 'index.html')
 
+def static1(request):
+    return render(request, 'index.html')
 
 def signings(request):
     admin = request.GET.get('admin')
