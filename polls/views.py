@@ -7,6 +7,12 @@ import json
 # 加密解密算法
 
 
+def sql_cute(sql):
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    return rows
+
 def index(request):
     print(request.GET.get('name'))
     cursor = connection.cursor()
@@ -16,10 +22,11 @@ def index(request):
     result = []
     for key in rows:
         list_value = list(key)
-        result.append({'id': list_value[0], 'name': list_value[1], 'sec': list_value[2], 'bobby': list_value[3], 'introduction': list_value[4]})
+        # result.append({'id': list_value[0], 'name': list_value[1], 'sec': list_value[2], 'bobby': list_value[3], 'introduction': list_value[4]})
+        result.append(list_value)
     print(result)
-    # return JsonResponse(result, safe=False)
-    return HttpResponse(json.dumps(result), content_type="application/json")
+    return JsonResponse(result, safe=False)
+    # return HttpResponse(json.dumps(result), content_type="application/json")
 
 
 def static(request):
