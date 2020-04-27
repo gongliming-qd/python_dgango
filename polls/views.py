@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.db import connection
 from django.core import signing
+import json
 
 # 加密解密算法
 
@@ -15,16 +16,19 @@ def index(request):
     result = []
     for key in rows:
         list_value = list(key)
-        result.append(list_value)
+        result.append({'id': list_value[0], 'name': list_value[1], 'sec': list_value[2], 'bobby': list_value[3], 'introduction': list_value[4]})
     print(result)
-    return HttpResponse(result)
+    # return JsonResponse(result, safe=False)
+    return HttpResponse(json.dumps(result), content_type="application/json")
 
 
 def static(request):
     return render(request, 'index.html')
 
+
 def static1(request):
     return render(request, 'index.html')
+
 
 def signings(request):
     admin = request.GET.get('admin')
