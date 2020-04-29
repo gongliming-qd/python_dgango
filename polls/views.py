@@ -33,8 +33,7 @@ def static(request):
     return render(request, 'index.html')
 
 
-def static1(request):
-    return render(request, 'index.html')
+
 
 
 def signings(request):
