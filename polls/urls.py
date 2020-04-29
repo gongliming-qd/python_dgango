@@ -3,7 +3,8 @@ from . import views
 
 
 urlpatterns = [
-    path('get_data', views.index, name='index'),
-    path('index', views.static, name='static'),
-    path('push_admin_psw', views.signings, name='signings'),
+    path('liming/', views.index, name='index'),
+    path('gong/', views.static, name='static'),
+    path('signing/', views.signings, name='signings'),
+    # path('gong/', views.static1, name='static1'),
 ]
