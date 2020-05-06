@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4adb918b-a100-4819-80d1-1745bd9a9885" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uwsgi.ini" beforeDir="false" afterPath="$PROJECT_DIR$/uwsgi.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +87,8 @@
       <workItem from="1587458888491" duration="1083000" />
       <workItem from="1587524966914" duration="931000" />
       <workItem from="1587612011945" duration="3665000" />
-      <workItem from="1587892934992" duration="15167000" />
+      <workItem from="1587892934992" duration="17124000" />
+      <workItem from="1588758084541" duration="4018000" />
     </task>
     <servers />
   </component>
@@ -102,9 +104,9 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="759" y="344" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1587439743311" />
-    <state x="960" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1587892955701">
+    <state x="960" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1588758114342">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="960" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1587892955701" />
+    <state x="960" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1588758114342" />
   </component>
 </project>
