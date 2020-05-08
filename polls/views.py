@@ -55,10 +55,12 @@ def getcache(request):
 
 from django.core.cache import cache #引入缓存模块
 def testredis(request):
-    cache.set('lmgong', '帅哥', 30*60)
-    results = cache.has_key('lmgong')
+    username = request.GET.get('username')
+    cache.set(username, username, 30*60)
+    results = cache.has_key(username)
     return JsonResponse(results, safe=False)
 
 def getredis(request):
-    results = cache.get('lmgong')
+    username = request.GET.get('username')
+    results = cache.get(username)
     return JsonResponse(results, safe=False)
