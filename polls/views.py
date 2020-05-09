@@ -45,10 +45,10 @@ def setcache(request):
 
 
 def getcache(request):
-    token = request.GET.get('token')
+    username = request.GET.get('username')
     # print(token)
-    # results = use_mysql('select token from token where username="%s"' %(username))
-    results = check_token(token)
+    results = use_mysql('select token from token where username="%(username)s"' %{"username": username})[0][0]
+    # results = check_token(token)
     return JsonResponse({"code": 200, "message": "success", "results": results}, safe=False)
 
 
