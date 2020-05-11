@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4adb918b-a100-4819-80d1-1745bd9a9885" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/polls/middleware.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mysite.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mysite.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages.txt" beforeDir="false" afterPath="$PROJECT_DIR$/packages.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/utils/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +95,7 @@
       <workItem from="1587612011945" duration="3665000" />
       <workItem from="1587892934992" duration="17124000" />
       <workItem from="1588758084541" duration="28276000" />
-      <workItem from="1588989638772" duration="6577000" />
+      <workItem from="1588989638772" duration="19391000" />
     </task>
     <servers />
   </component>
@@ -98,14 +103,14 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1586424720958">
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1589179746055">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1586424720958" />
-    <state x="759" y="344" key="SettingsEditor" timestamp="1587439743311">
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1589179746055" />
+    <state x="763" y="338" key="SettingsEditor" timestamp="1589179772489">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="759" y="344" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1587439743311" />
+    <state x="763" y="338" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1589179772489" />
     <state x="960" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1588989642689">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

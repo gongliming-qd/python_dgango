@@ -2,6 +2,7 @@ import time
 from django.core import signing
 import hashlib
 from django.db import connection
+from django.core.cache import cache #引入缓存模块
 
 # 对数据库操作
 def use_mysql(sql):
@@ -14,7 +15,7 @@ def use_mysql(sql):
 # 加密
 def encrypt(obj):
     """加密"""
-    value = signing.dumps(obj, key='CHEN_FENG_YAO', salt='www.lanou3g.com')
+    value = signing.dumps(obj, key='liming', salt='www.gongliming.com')
     value = signing.b64_encode(value.encode()).decode()
     return value
 
@@ -24,7 +25,6 @@ def decrypt(src):
     """解密"""
     src = signing.b64_decode(src.encode()).decode()
     raw = signing.loads(src, key='liming', salt='www.gongliming.com')
-    print(type(raw))
     return raw
 
 
@@ -42,10 +42,9 @@ def create_token(username):
     signature = md5.hexdigest()
     token = "%s.%s.%s" % (header, payload, signature)
     # 存储到缓存中
-    results = use_mysql('INSERT INTO token (username, token)  VALUES("%s","%s")'%(username, token))
-    print(results)
-
-    return results
+    # results = use_mysql('INSERT INTO token (username, token)  VALUES("%s","%s")'%(username, token))
+    cache.set(username, token, 30*60)
+    return token
 
 
 def get_payload(token):
@@ -64,10 +63,10 @@ def get_username(token):
 # 检测token
 def check_token(token):
     username = get_username(token)
-    last_token = use_mysql('select token from token where username="%s"' % (username))
+    results_token = cache.get(username)
+    print(1111,results_token)
+    # last_token = use_mysql('select token from token where username="%s"' % (username))
     # last_token = last_token[0][0]
-    print(last_token)
-
-    if last_token:
-        return last_token == token
+    if results_token:
+        return results_token == token
     return False

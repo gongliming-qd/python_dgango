@@ -10,4 +10,10 @@ urlpatterns = [
     path('index/', views.index, name='index'),
     path('liming/', views.index, name='index'),
     path('signing/', views.signings, name='signings'),
+
+
+
+    path('tologin/', views.tologin, name='signings'),
+    path('check_api_token/', views.check_api_token, name='signings'),
+
 ]
