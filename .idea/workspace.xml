@@ -4,9 +4,6 @@
     <list default="true" id="4adb918b-a100-4819-80d1-1745bd9a9885" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/middleware.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/middleware.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/utils/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +90,7 @@
       <workItem from="1587892934992" duration="17124000" />
       <workItem from="1588758084541" duration="28276000" />
       <workItem from="1588989638772" duration="21708000" />
-      <workItem from="1589249480604" duration="15535000" />
+      <workItem from="1589249480604" duration="16711000" />
     </task>
     <servers />
   </component>
