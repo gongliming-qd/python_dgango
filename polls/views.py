@@ -7,7 +7,6 @@ from .utils.use_mysql import use_mysql
 
 # 加密解密算法
 def index(request):
-    print(request.GET.get('name'))
     cursor = connection.cursor()
     cursor.execute("select * from member")
     rows = cursor.fetchall()
@@ -62,7 +61,6 @@ def tologin(request):
 
 # 注册用户部分
 def register_user(request):
-    print(request.method)
     if request.method == 'POST':
         username = json.loads(request.body)['username']
         psw = json.loads(request.body)['psw']
