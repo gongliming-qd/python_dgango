@@ -1,13 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.db import connection
-from .utils.utils import use_mysql, create_token, check_token
+from .utils.utils import  create_token, check_token, get_username, encrypt_other
+from .utils.use_mysql import use_mysql
 
-def use_mysql(sql):
-    cursor = connection.cursor()
-    cursor.execute(sql)
-    rows = cursor.fetchall()
-    return rows
+
 # 加密解密算法
 def index(request):
     print(request.GET.get('name'))
@@ -19,32 +16,11 @@ def index(request):
     for key in rows:
         list_value = list(key)
         result.append({'id': list_value[0], 'name': list_value[1], 'sec': list_value[2], 'bobby': list_value[3], 'introduction': list_value[4]})
-        # result.append(list_value)
+        result.append(list_value)
     print(result)
-    return JsonResponse(result, safe=False)
-from django.core import signing
-def signings(request):
-    admin = request.GET.get('admin')
-    psw = request.GET.get('psw')
-    person = {'admin': admin, 'psw': psw}
-    person_change = signing.dumps(person)
-    print(person_change)
-    person_cancel = signing.loads(person_change)
-    print(person_cancel)
-
-    return HttpResponse('HELLO')
-def setcache(request):
-    username = request.GET.get('username')
-    print(username)
-    # results = use_mysql('INSERT INTO token (username, token)  VALUES("%s","%s")'%(username, token))
-    results = create_token(username)
-    return JsonResponse({"code": 200, "message": "success", "results": results}, safe=False)
-def getcache(request):
-    username = request.GET.get('username')
-    # print(token)
-    results = use_mysql('select token from token where username="%(username)s"' %{"username": username})[0][0]
-    # results = check_token(token)
-    return JsonResponse({"code": 200, "message": "success", "results": results}, safe=False)
+    results = {'code': 0, "state": 'true', "results": {"message": "获取数据成功","lists":result}}
+    return JsonResponse(results, safe=False)
+# redis学习部分
 from django.core.cache import cache #引入缓存模块
 def testredis(request):
     username = request.GET.get('username')
@@ -64,25 +40,62 @@ def tologin(request):
         # 1. 获取账号密码
         username = json.loads(request.body)['username']
         psw = json.loads(request.body)['psw']
-        # 2. 数据库取账号密码
+        # 2. 验证是否有当前账号
+        num = use_mysql('select  count(*) from login_username_psw where username="%(username)s"'%{'username': username})[0][0]
+        if num != 1:
+            results = {'code': 200, "state": 'false', "results": {"message":'当前用户或密码不正确'}}
+            return JsonResponse(results, safe=False)
+        # 3. 数据库取账号密码
         return_psw = use_mysql('select  psw from login_username_psw where username="%(username)s"'%{'username': username})[0][0]
+        # 4. 解密数据库密码
+        return_psw = get_username(return_psw)
+        # 5. 验证密码是否正确
         if return_psw == psw:
-            # 3. 创建token, 返回token
+            # 5.1. 密码正确创建token, 返回token
             token = create_token(username)
-            results = {'code': 200, "message": 'success', "token": token, "results": {}}
+            results = {'code': 0, "state": 'success', "token": token, "results": {"message": '登录成功'}}
             return JsonResponse(results, safe=False)
         else:
-            results = {'code':200, "message":'false',"results":{}}
+            # 5.2. 密码不正确
+            results = {'code': 0, "state": 'false', "results": {"message": '当前用户或密码不正确'}}
             return JsonResponse(results, safe=False)
 
+# 注册用户部分
+def register_user(request):
+    print(request.method)
+    if request.method == 'POST':
+        username = json.loads(request.body)['username']
+        psw = json.loads(request.body)['psw']
+        psw_confirm = json.loads(request.body)['psw_confirm']
+        # 1. 验证该用户是否已经存在
+        num = use_mysql('select count(*) from login_username_psw where username="%(username)s"'%{"username": username})[0][0]
+        if num == 0:
+            # 1.1 说明不存在可以注册
+            ## 1.1.1 验证密码
+            ### 1.1.2 验证密码和再次输入密码是否一致
+            if psw == psw_confirm:
+                # 1.1.2.1 加密密码
+                psw = encrypt_other(psw)
+                # 1.1.2.1 写入数据库中
+                results_sql = use_mysql('insert into login_username_psw(username, psw) values ("%(username)s","%(psw)s")'%{"username": username, "psw": psw})
+                results = {'code': 0, "state": 'success', "results": {"message": results_sql}}
+                return JsonResponse(results, safe=False)
+            else:
+                results = {'code': 0, "state": 'success', "results": {"message": "密码和确认密码不一致"}}
+                return JsonResponse(results, safe=False)
+        else:
+            # 1.2 说明不存在不能注册
+            results = {'code': 0, "state": 'false', "results": {"message": '当前用户已注册'}}
+            return JsonResponse(results, safe=False)
 
 # 验证token是否正确
 def check_api_token(request):
-    token = request.GET.get('token')
+    # 1. 获取请求头中的token
+    token = request.META.get("HTTP_AUTHORIZATION")
     results = check_token(token)
     if results:
-        results = {'code': 200, "message": 'success'}
+        results = {'code': 0, "message": 'success'}
         return JsonResponse(results, safe=False)
     else:
-        results = {'code':200, "message":'false'}
+        results = {'code':0, "message":'false'}
         return JsonResponse(results, safe=False)
