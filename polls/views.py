@@ -97,3 +97,34 @@ def check_api_token(request):
     else:
         results = {'code':0, "message":'false'}
         return JsonResponse(results, safe=False)
+
+
+# 存储图片
+def check_pass(request):
+    psw = request.POST.get('psw');
+    file_img = request.FILES.get('file_img')
+    print(file_img)
+
+    # 加密文件名
+    file_name = encrypt_other(file_img.name)
+
+    # 文件名和上传的数据填到数据库中
+
+
+    # 文件存储到文件夹
+    with open('upload/img/'+file_name, 'wb') as pic:
+        for c in file_img.chunks():
+            pic.write(c)
+
+    results = {'code': 0, "message": 'true'}
+    return JsonResponse(results, safe=False)
+
+# 获取图片
+def get_img(request):
+
+    # 获取用户名 touxiang.jpg
+    # 通过用户名到数据库中求取图片的名字
+    img_name = request.GET.get('img_name')
+    # 通过名字, 到文件夹中读取, 并返回到前端中
+    image_data = open('upload/img/' + img_name, "rb").read()
+    return HttpResponse(image_data, content_type="image/png")
