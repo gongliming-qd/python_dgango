@@ -60,31 +60,6 @@ def tologin(request):
             return JsonResponse(results, safe=False)
 
 # 注册用户部分
-def register_user(request):
-    if request.method == 'POST':
-        username = json.loads(request.body)['username']
-        psw = json.loads(request.body)['psw']
-        psw_confirm = json.loads(request.body)['psw_confirm']
-        # 1. 验证该用户是否已经存在
-        num = use_mysql('select count(*) from login_username_psw where username="%(username)s"'%{"username": username})[0][0]
-        if num == 0:
-            # 1.1 说明不存在可以注册
-            ## 1.1.1 验证密码
-            ### 1.1.2 验证密码和再次输入密码是否一致
-            if psw == psw_confirm:
-                # 1.1.2.1 加密密码
-                psw = encrypt_other(psw)
-                # 1.1.2.1 写入数据库中
-                results_sql = use_mysql('insert into login_username_psw(username, psw) values ("%(username)s","%(psw)s")'%{"username": username, "psw": psw})
-                results = {'code': 0, "state": 'success', "results": {"message": results_sql}}
-                return JsonResponse(results, safe=False)
-            else:
-                results = {'code': 0, "state": 'success', "results": {"message": "密码和确认密码不一致"}}
-                return JsonResponse(results, safe=False)
-        else:
-            # 1.2 说明不存在不能注册
-            results = {'code': 0, "state": 'false', "results": {"message": '当前用户已注册'}}
-            return JsonResponse(results, safe=False)
 
 # 验证token是否正确
 def check_api_token(request):
@@ -99,7 +74,7 @@ def check_api_token(request):
         return JsonResponse(results, safe=False)
 
 
-# 存储图片
+# 存储formdata信息包括图片
 def check_pass(request):
     psw = request.POST.get('psw');
     file_img = request.FILES.get('file_img')
@@ -128,3 +103,108 @@ def get_img(request):
     # 通过名字, 到文件夹中读取, 并返回到前端中
     image_data = open('upload/img/' + img_name, "rb").read()
     return HttpResponse(image_data, content_type="image/png")
+
+
+# #    个人信息修改部分   -----------------------------------------------------------
+# 1. 获取用户信息
+def get_api_username_all_info(request):
+        # 1. 取出所有数据
+        weight = request.GET.get('weight',None)
+        xxx = (())
+        if weight:
+            xxx = use_mysql('select * from login_username_psw where weight="%(weight)s"' %{"weight": weight})
+        else:
+            results = {'code': 0, "state": 'true', "results": {"message": "无权限参数", "lists": None}}
+            return JsonResponse(results, safe=False)
+        if weight == '0':
+            xxx = use_mysql('select * from login_username_psw')
+        rows = list(xxx)
+        result = []
+        for key in rows:
+            list_value = list(key)
+            print(get_username(list_value[2]))
+            print(list_value[2])
+            result.append({'id': list_value[0], 'username': list_value[1], 'psw': get_username(list_value[2]), 'avatar_address': list_value[3],
+                           'label': list_value[4],'weight': list_value[5]})
+        results = {'code': 0, "state": 'true', "results": {"message": "获取数据成功", "lists": result}}
+        return JsonResponse(results, safe=False)
+
+
+# 1. 获取关键字搜索用户信息
+def get_api_username_all_info_by_search(request):
+        # 1. 取出所有数据
+        weight = request.GET.get('weight',None)
+        search = request.GET.get('search',None)
+        xxx = (())
+        print(weight)
+        print(search)
+
+        if weight == '0':
+            xxx = use_mysql('select * from login_username_psw where concat(id,username,psw,label,weight) like "%(search)s"' %{"search": search})
+        elif weight == None :
+            results = {'code': 0, "state": 'true', "results": {"message": "无权限参数", "lists": None}}
+            return JsonResponse(results, safe=False)
+        else:
+            xxx = use_mysql('select * from login_username_psw where weight="%(weight)s" and concat(id,username,psw,label,weight) like "%(search)s"' %{"weight": weight,"search":search})
+        rows = list(xxx)
+        result = []
+        for key in rows:
+            list_value = list(key)
+            print(get_username(list_value[2]))
+            print(list_value[2])
+            result.append({'id': list_value[0], 'username': list_value[1], 'psw': get_username(list_value[2]), 'avatar_address': list_value[3],
+                           'label': list_value[4],'weight': list_value[5]})
+        results = {'code': 0, "state": 'true', "results": {"message": "获取数据成功", "lists": result}}
+        return JsonResponse(results, safe=False)
+
+
+# 2. 新增用户
+def add_api_username_all_info(request):
+    if request.method == 'POST':
+        username = json.loads(request.body)['username']
+        psw = json.loads(request.body)['psw']
+        label = json.loads(request.body)['label']
+        weight = json.loads(request.body)['weight']
+        # 1. 验证该用户是否已经存在
+        num = use_mysql('select count(*) from login_username_psw where username="%(username)s"'%{"username": username})[0][0]
+        if num == 0:
+            # 1.1 说明不存在可以注册
+            # 1.1.2.1 写入数据库中
+            results_sql = use_mysql(
+                'insert into login_username_psw(username, psw, label, weight) values ("%(username)s","%(psw)s","%(label)s","%(weight)s")' % {
+                    "username": username, "psw": encrypt_other(psw), "label": label, "weight": weight})
+            results = {'code': 0, "state": 'success', "results": {"message": results_sql}}
+            return JsonResponse(results, safe=False)
+        else:
+            # 1.2 说明不存在不能注册
+            results = {'code': 0, "state": 'false', "results": {"message": '当前用户已注册'}}
+            return JsonResponse(results, safe=False)
+
+
+# 3. 修改用户
+def update_api_username_all_info(request):
+    if request.method == 'POST':
+        id = json.loads(request.body)['id']
+        username = json.loads(request.body)['username']
+        psw = json.loads(request.body)['psw']
+        label = json.loads(request.body)['label']
+        weight = json.loads(request.body)['weight']
+
+        results_sql = use_mysql(
+            'update login_username_psw set  username="%(username)s", psw="%(psw)s", label="%(label)s", weight="%(weight)s" where id=%(id)s' % {
+               "username": username, "psw": encrypt_other(psw), "label": label, "weight": weight, "id": id})
+        results = {'code': 0, "state": 'success', "results": {"message": results_sql}}
+        return JsonResponse(results, safe=False)
+        # 1.2 说明不存在不能注册
+
+
+# 4. 删除用户
+def dele_api_username_all_info(request):
+    if request.method == 'POST':
+        id = json.loads(request.body)['id']
+        print(id)
+        results_sql = use_mysql(
+            'delete from login_username_psw where id="%(id)s"' % {
+                "id": id})
+        results = {'code': 0, "state": 'success', "results": {"message": results_sql}}
+        return JsonResponse(results, safe=False)
