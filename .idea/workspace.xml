@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4adb918b-a100-4819-80d1-1745bd9a9885" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/app.b8f1e9a1.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/app.e5cfdaea.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/chunk-vendors.6470e7fe.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/utils/use_mysql.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/utils/use_mysql.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +93,7 @@
       <workItem from="1588758084541" duration="28276000" />
       <workItem from="1588989638772" duration="21708000" />
       <workItem from="1589249480604" duration="36290000" />
-      <workItem from="1590115600665" duration="15190000" />
+      <workItem from="1590115600665" duration="31722000" />
     </task>
     <servers />
   </component>
@@ -105,6 +101,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1010" y="446" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590411353654">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1010" y="446" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1590411353654" />
     <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1589179746055">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

@@ -1,22 +1,22 @@
-from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.db import connection
-from .utils.utils import  create_token, check_token, get_username, encrypt_other
-from .utils.use_mysql import use_mysql
+from ..utils.utils import  create_token, check_token, get_username, encrypt_other
+from ..utils.use_mysql import use_mysql, use_mysql_by_dict
 
 
 # 加密解密算法
 def index(request):
-    cursor = connection.cursor()
-    cursor.execute("select * from member")
-    rows = cursor.fetchall()
-    rows = list(rows)
-    result = []
-    for key in rows:
-        list_value = list(key)
-        result.append({'id': list_value[0], 'name': list_value[1], 'sec': list_value[2], 'bobby': list_value[3], 'introduction': list_value[4]})
-        result.append(list_value)
-    print(result)
+    # cursor = connection.cursor()
+    # cursor.execute("select * from member")
+    result = use_mysql_by_dict("select * from member")
+    # rows = cursor.fetchall()
+    # rows = list(rows)
+    # result = []
+    # for key in rows:
+    #     list_value = list(key)
+    #     result.append({'id': list_value[0], 'name': list_value[1], 'sec': list_value[2], 'bobby': list_value[3], 'introduction': list_value[4]})
+    #     result.append(list_value)
+    # print(result)
     results = {'code': 0, "state": 'true', "results": {"message": "获取数据成功","lists":result}}
     return JsonResponse(results, safe=False)
 # redis学习部分
@@ -105,6 +105,23 @@ def get_img(request):
     return HttpResponse(image_data, content_type="image/png")
 
 
+
+# 用户操作>修改信息 -----------------------------------------------------------
+def get_userinfo_by_username(request):
+    username = request.GET.get('username',None)
+    print(username)
+    if username:
+        result = use_mysql_by_dict('select * from  login_username_psw where username="%(username)s"' %{"username": username})
+        print(result)
+
+        results = {'code': 0, "state": 'success', "results": result}
+        return JsonResponse(results, safe=False)
+
+    else:
+        results = {'code': 0, "state": 'success', "results": {"message": 'username不存在'}}
+        return JsonResponse(results, safe=False)
+
+
 # #    个人信息修改部分   -----------------------------------------------------------
 # 1. 获取用户信息
 def get_api_username_all_info(request):
@@ -133,8 +150,8 @@ def get_api_username_all_info(request):
 # 1. 获取关键字搜索用户信息
 def get_api_username_all_info_by_search(request):
         # 1. 取出所有数据
-        weight = request.GET.get('weight',None)
-        search = request.GET.get('search',None)
+        weight = request.GET.get('weight', None)
+        search = request.GET.get('search', None)
         xxx = (())
         print(weight)
         print(search)
