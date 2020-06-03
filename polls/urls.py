@@ -14,12 +14,12 @@ urlpatterns = [
 
 
     # 文件部分
-    path('check_pass/', views.check_pass, name='signings'),
     path('get_img/', views.get_img, name='signings'),
 
 
     # 用户操作>修改信息
     path('get_userinfo_by_username/', views.get_userinfo_by_username, name='signings'),
+    path('update_userinfo_by_id/', views.update_userinfo_by_id, name='signings'),
 
     # 个人信息修改部分
     path('get_api_username_all_info/', views.get_api_username_all_info, name='signings'),

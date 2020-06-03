@@ -1,6 +1,6 @@
 from django.http import HttpResponse, JsonResponse
 from django.db import connection
-from ..utils.utils import  create_token, check_token, get_username, encrypt_other
+from ..utils.utils import  create_token, check_token, get_username, encrypt_other, encrypt
 from ..utils.use_mysql import use_mysql, use_mysql_by_dict
 
 
@@ -74,25 +74,6 @@ def check_api_token(request):
         return JsonResponse(results, safe=False)
 
 
-# 存储formdata信息包括图片
-def check_pass(request):
-    psw = request.POST.get('psw');
-    file_img = request.FILES.get('file_img')
-    print(file_img)
-
-    # 加密文件名
-    file_name = encrypt_other(file_img.name)
-
-    # 文件名和上传的数据填到数据库中
-
-
-    # 文件存储到文件夹
-    with open('upload/img/'+file_name, 'wb') as pic:
-        for c in file_img.chunks():
-            pic.write(c)
-
-    results = {'code': 0, "message": 'true'}
-    return JsonResponse(results, safe=False)
 
 # 获取图片
 def get_img(request):
@@ -107,6 +88,7 @@ def get_img(request):
 
 
 # 用户操作>修改信息 -----------------------------------------------------------
+# 1. 获取用户信息
 def get_userinfo_by_username(request):
     username = request.GET.get('username',None)
     print(username)
@@ -122,8 +104,44 @@ def get_userinfo_by_username(request):
         return JsonResponse(results, safe=False)
 
 
+# 2. 修改用户信息
+def update_userinfo_by_id(request):
+    id = request.POST.get('id')
+    username = request.POST.get('username')
+    label = request.POST.get('label')
+    # 1. 判断当前是否已经存在当前用户
+    sql_username = use_mysql('select username from login_username_psw where id=%(id)s' % {"id": id})[0][0]
+    if sql_username != username:
+        num = use_mysql('select count(*) from login_username_psw where username="%(username)s"' % {"username": username})[0][0]
+        if num != 0:
+            # 1.2 说明不存在不能注册
+            results = {'code': 0, "state": 'false', "results": {"message": '当前用户名已注册'}}
+            return JsonResponse(results, safe=False)
+    print(222222222222)
+    if request.FILES.get('avatar_address'):
+        file_img = request.FILES.get('avatar_address')
+        # 2. 加密文件名
+        avatar_address = encrypt(file_img.name)
+        avatar_address += '.jpg'
+        # 3. 文件名和上传的数据填到数据库中
+        result = use_mysql('update login_username_psw set username="%(username)s",label="%(label)s", avatar_address="%(avatar_address)s" where id=%(id)s' % {
+            "username": username,"label": label,"avatar_address": avatar_address,"id":id})
+        # 4. 文件存储到文件夹
+        with open('upload/img/'+avatar_address, 'wb') as pic:
+            for c in file_img.chunks():
+                pic.write(c)
+        # 5. 返回数据
+        results = {'code': 0, "message": 'true', 'results': result}
+        return JsonResponse(results, safe=False)
+    else:
+        result = use_mysql(
+            'update login_username_psw set username="%(username)s",label="%(label)s" where id=%(id)s' % {
+                "username": username, "label": label, "id": id})
+        results = {'code': 0, "message": 'true', 'results': result}
+        return JsonResponse(results, safe=False)
 # #    个人信息修改部分   -----------------------------------------------------------
 # 1. 获取用户信息
+
 def get_api_username_all_info(request):
         # 1. 取出所有数据
         weight = request.GET.get('weight',None)
