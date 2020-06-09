@@ -35,7 +35,7 @@ def create_token(username):
     signature = md5.hexdigest()
     token = "%s.%s.%s" % (header, payload, signature)
     # 存储到缓存中
-    cache.set(username, token, 30*60)
+    cache.set(username, token, 60*60*12*14)
     return token
 
 

@@ -139,6 +139,34 @@ def update_userinfo_by_id(request):
                 "username": username, "label": label, "id": id})
         results = {'code': 0, "message": 'true', 'results': result}
         return JsonResponse(results, safe=False)
+
+# 3. 修改用户密码
+def update_userpws_by_id(request):
+    if request.method == 'POST':
+        id = json.loads(request.body)['id']
+        odd_psw = json.loads(request.body)['odd_psw']
+        new_psw = json.loads(request.body)['new_psw']
+        # 1. 验证旧密码是否正确
+        # 1.1 取数据
+        print(111111111111111111)
+        results_sql = use_mysql_by_dict('''select psw from login_username_psw where id=%(id)s''' %{"id": id})
+        # 1.2 验证数据
+        print(2222222222222)
+
+        get_username_pws = get_username(results_sql)
+
+        # 1.3 判断
+        if get_username_pws != odd_psw:
+            print(3333333333333222)
+
+            results = {'code': 1, "state": 'error', "results": {"message": "密码不正确"}}
+            return JsonResponse(results, safe=False)
+        else:
+            print(444444444444444)
+
+            use_mysql(''' update login_username_psw set psw="%(psw)s" where id="%(id)d"'''%{"psw": create_token(new_psw), "id":id})
+            results = {'code': 0, "state": 'success', "results": {"message": "修改成功!!"}}
+            return JsonResponse(results, safe=False)
 # #    个人信息修改部分   -----------------------------------------------------------
 # 1. 获取用户信息
 

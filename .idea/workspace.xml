@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4adb918b-a100-4819-80d1-1745bd9a9885" name="Default Changelist" comment="" />
+    <list default="true" id="4adb918b-a100-4819-80d1-1745bd9a9885" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/middleware.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/middleware.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/utils/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/views/views_by_personManage.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views/views_by_personManage.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +94,7 @@
       <workItem from="1588758084541" duration="28276000" />
       <workItem from="1588989638772" duration="21708000" />
       <workItem from="1589249480604" duration="36290000" />
-      <workItem from="1590115600665" duration="44849000" />
+      <workItem from="1590115600665" duration="50728000" />
     </task>
     <servers />
   </component>

@@ -15,6 +15,7 @@ class polls_middleware_class(MiddlewareMixin):
         if request.path != '/api/tologin/':
             # 2. 获取token
             token = request.META.get("HTTP_AUTHORIZATION")
+            print(token)
             # 3. 判断是否有传递token
             if token != 'hello_world':
                 # 3.1 验证token信息
