@@ -19,7 +19,9 @@ def use_mysql_by_dict(sql):
 
 
 def use_mysql(sql):
+    print(sql)
     cursor = connection.cursor()
     cursor.execute(sql)
     rows = cursor.fetchall()
+    print(rows)
     return rows

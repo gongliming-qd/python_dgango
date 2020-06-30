@@ -226,9 +226,11 @@ def add_api_username_all_info(request):
         if num == 0:
             # 1.1 说明不存在可以注册
             # 1.1.2.1 写入数据库中
+            print(username,psw,label,weight)
             results_sql = use_mysql(
                 'insert into login_username_psw(username, psw, label, weight) values ("%(username)s","%(psw)s","%(label)s","%(weight)s")' % {
                     "username": username, "psw": encrypt_other(psw), "label": label, "weight": weight})
+            print(1111)
             results = {'code': 0, "state": 'success', "results": {"message": results_sql}}
             return JsonResponse(results, safe=False)
         else:
@@ -264,3 +266,9 @@ def dele_api_username_all_info(request):
                 "id": id})
         results = {'code': 0, "state": 'success', "results": {"message": results_sql}}
         return JsonResponse(results, safe=False)
+# #    笔记部分   -----------------------------------------------------------
+
+# 1. 获取所有数据
+def get_note_by_id(request):
+    user_id = request.GET.get('user_id', None)
+
