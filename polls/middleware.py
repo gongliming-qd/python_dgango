@@ -11,6 +11,10 @@ class polls_middleware_class(MiddlewareMixin):
         # 0. 获取图片
         if '/api/get_img/' in request.path:
             return
+        # 用于爬虫测试
+        # if '/api/get_userinfo_by_username/' == request.path:
+        #     print(111)
+        #     return
         # 1. 如果不是登录接口, 都要进行token验证
         if request.path != '/api/tologin/':
             # 2. 获取token

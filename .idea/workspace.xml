@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4adb918b-a100-4819-80d1-1745bd9a9885" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/utils/use_mysql.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/utils/use_mysql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/views/views_by_personManage.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views/views_by_personManage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/middleware.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/middleware.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/ssl/1_www.gongliming.com_bundle.crt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/ssl/2_www.gongliming.com.key" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +94,7 @@
       <workItem from="1588989638772" duration="21708000" />
       <workItem from="1589249480604" duration="36290000" />
       <workItem from="1590115600665" duration="61212000" />
-      <workItem from="1593515737176" duration="262000" />
+      <workItem from="1593515737176" duration="7293000" />
     </task>
     <servers />
   </component>
@@ -109,10 +110,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1010" y="446" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1590411353654" />
-    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1589179746055">
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1593759602346">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1589179746055" />
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1593759602346" />
     <state x="763" y="338" key="SettingsEditor" timestamp="1589179772489">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -121,16 +122,5 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="960" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1593515738332" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/polls/views/views_by_personManage.py</url>
-          <line>242</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
